@@ -1,0 +1,1023 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Wejden Khessib - DevOps Engineer and Linux Systems Administrator.">
+  <title>Wejden Khessib | DevOps Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111a2d;
+      --text: #edf2ff;
+      --muted: #9ba8c2;
+      --line: rgba(157,177,218,.15);
+      --accent: #8b7cff;
+      --cyan: #57d6e8;
+      --green: #64e0ad;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .site-header {
+      height: 76px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      background: rgba(11,16,32,.94);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand-mark {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: linear-gradient(135deg,var(--accent),var(--cyan));
+      color: #07101c;
+    }
+
+    .brand-muted { color: #8290ad; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav > a {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav > a:hover { color: var(--cyan); }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-left: 8px;
+      font: 12px "DM Mono", monospace;
+      color: #687691;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: #8290ad;
+      cursor: pointer;
+      padding: 7px 4px;
+      font-weight: 700;
+    }
+
+    .lang-btn.active, .lang-btn:hover { color: var(--cyan); }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 7px 12px;
+      cursor: pointer;
+    }
+
+    .section {
+      width: min(var(--max),90%);
+      margin: auto;
+      padding: 95px 0;
+    }
+
+    .hero {
+      min-height: 670px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+    }
+
+    .eyebrow, .section-index, .hero-kicker, .project-type {
+      font: 10px "DM Mono", monospace;
+      letter-spacing: 1.4px;
+      color: var(--cyan);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hero-kicker { margin-top: 30px; color: #8998b7; }
+
+    h1 {
+      font-size: clamp(43px,5.2vw,68px);
+      line-height: 1.12;
+      letter-spacing: -3px;
+      margin: 15px 0 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg,#9b8cff,#59d7e6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description, .body-copy, .section-intro {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 650px;
+    }
+
+    .hero-actions, .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .button-primary {
+      color: #07101c;
+      background: linear-gradient(110deg,#8d7cff,#56cfe0);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .social-links a { color: #8290ad; font-size: 11px; }
+    .social-links a:hover { color: var(--cyan); }
+
+    /* Hero terminal illustration */
+
+    .hero-visual {
+      min-height: 400px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .terminal {
+      width: 100%;
+      max-width: 420px;
+      background: #111b30;
+      border: 1px solid rgba(139,124,255,.3);
+      border-radius: 13px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,.4);
+      transform: rotate(-2deg);
+      z-index: 2;
+    }
+
+    .terminal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      font: 10px "DM Mono",monospace;
+      color: #8998b7;
+    }
+
+    .terminal-dots { display: flex; gap: 5px; }
+    .terminal-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff6b78;
+    }
+    .terminal-dots i:nth-child(2) { background: #f6c96a; }
+    .terminal-dots i:nth-child(3) { background: #5bd7a4; }
+
+    .live { color: var(--green); }
+
+    .terminal-body {
+      padding: 20px;
+      font: 10px/2.2 "DM Mono",monospace;
+      color: #b3bfd5;
+    }
+
+    .terminal-body p { margin: 3px 0; }
+    .prompt { color: var(--cyan); }
+    .success { color: var(--green); }
+    .terminal-label {
+      display: inline-block;
+      width: 120px;
+      color: #7f8ca8;
+    }
+
+    .terminal-bars {
+      display: flex;
+      align-items: end;
+      gap: 5px;
+      height: 40px;
+      margin-top: 12px;
+    }
+
+    .terminal-bars i {
+      flex: 1;
+      height: 45%;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(var(--cyan),var(--accent));
+    }
+
+    .terminal-bars i:nth-child(3n) { height: 90%; }
+    .terminal-bars i:nth-child(2n) { height: 65%; }
+
+    .floating-tag {
+      position: absolute;
+      background: #17223a;
+      border: 1px solid var(--line);
+      padding: 9px 13px;
+      border-radius: 7px;
+      font: 11px "DM Mono",monospace;
+      z-index: 3;
+    }
+
+    .docker { top: 45px; right: 0; }
+    .linux { bottom: 40px; left: 0; }
+    .grafana { bottom: 20px; right: 5%; color: var(--cyan); }
+
+    /* Section headings */
+
+    .section-heading { margin-bottom: 35px; }
+    .section-index { margin-bottom: 8px; }
+
+    h2 {
+      font-size: clamp(30px,4vw,43px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin: 0;
+    }
+
+    .section-intro { margin-top: 12px; }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .lead {
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+
+    .stat-card, .skill-card, .experience-card,
+    .project-card, .learning-card {
+      background: linear-gradient(145deg,#141f36,#0d1628);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .stat-card { padding: 20px; }
+    .stat-card strong { font-size: 31px; }
+    .stat-card strong span { color: var(--cyan); }
+    .stat-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* Skills */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 13px;
+    }
+
+    .skill-card {
+      padding: 20px;
+      min-height: 185px;
+      transition: .2s;
+    }
+
+    .skill-card:hover, .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(87,214,232,.4);
+    }
+
+    .skill-icon {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      background: rgba(139,124,255,.13);
+      color: var(--cyan);
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .skill-card h3, .project-card h3, .learning-card h3 {
+      font-size: 14px;
+      margin: 15px 0 8px;
+    }
+
+    .skill-card p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    /* Experience */
+
+    .experience-card { padding: 30px; }
+
+    .experience-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .experience-top h3 { margin: 0; font-size: 18px; }
+    .experience-company { color: var(--cyan); font-size: 12px; }
+
+    .experience-period {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--muted);
+      font: 10px "DM Mono",monospace;
+      white-space: nowrap;
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 23px;
+      color: #b2bfd6;
+      font-size: 12px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+    }
+
+    /* Projects */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .project-card {
+      padding: 25px;
+      transition: .2s;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .project-number { color: #65728d; font: 12px "DM Mono",monospace; }
+
+    .project-card h3 { font-size: 17px; margin-top: 23px; }
+
+    .project-card p {
+      font-size: 12px;
+      color: var(--muted);
+      min-height: 65px;
+    }
+
+    .tag-list {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .tag-list span {
+      font: 9px "DM Mono",monospace;
+      color: #aab8d2;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      padding: 5px 8px;
+      border-radius: 5px;
+    }
+
+    .projects-note { color: #75839e; font-size: 10px; }
+
+    /* Learning and contact */
+
+    .learning-card {
+      display: flex;
+      gap: 20px;
+      padding: 25px;
+    }
+
+    .learning-symbol {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      background: rgba(87,214,232,.1);
+      color: var(--cyan);
+      border-radius: 9px;
+      font-size: 22px;
+    }
+
+    .learning-card h3 { margin-top: 0; }
+    .learning-card p { color: var(--muted); font-size: 12px; margin: 0; }
+
+    .contact-panel {
+      padding: 50px;
+      border-radius: 15px;
+      border: 1px solid rgba(139,124,255,.3);
+      background: radial-gradient(ellipse at 90% 0%,rgba(87,214,232,.12),transparent 45%),#141d35;
+    }
+
+    .contact-panel h2 { max-width: 680px; }
+    .contact-panel > p { color: var(--muted); font-size: 13px; max-width: 600px; }
+    .contact-email { color: #8492ac; font: 11px "DM Mono",monospace; margin-top: 25px; }
+
+    .site-footer {
+      width: min(var(--max),90%);
+      margin: auto;
+      padding: 25px 0 35px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .site-footer p, .back-top { color: #75839e; font-size: 10px; }
+
+    @media(max-width:900px) {
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid { gap: 30px; }
+    }
+
+    @media(max-width:680px) {
+      .site-header { height: 68px; }
+      .menu-toggle { display: block; }
+      .nav {
+        display: none;
+        position: absolute;
+        top: 67px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: #0e1729;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .nav.open { display: flex; }
+      .nav > a { font-size: 13px; }
+      .language-switch { margin-left: 0; }
+      .hero { grid-template-columns: 1fr; padding-top: 65px; }
+      h1 { font-size: 44px; }
+      .hero-visual { min-height: 340px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .experience-top { display: block; }
+      .experience-period { display: inline-block; margin-top: 10px; }
+      .contact-panel { padding: 28px 22px; }
+      .site-footer { flex-wrap: wrap; }
+      .site-footer p { width: 100%; order: 3; }
+    }
+
+    @media(max-width:420px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 39px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#home">
+    <span class="brand-mark">WK</span>
+    <span>WEJDEN<span class="brand-muted">.KHESSIB</span></span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+
+  <nav class="nav" id="mainNav">
+    <a href="#about" data-i18n="navAbout">About</a>
+    <a href="#skills" data-i18n="navSkills">Skills</a>
+    <a href="#experience" data-i18n="navExperience">Experience</a>
+    <a href="#projects" data-i18n="navProjects">Projects</a>
+    <a href="#contact" data-i18n="navContact">Contact</a>
+
+    <div class="language-switch" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+      <span>/</span>
+      <button class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="section hero" id="home">
+    <div>
+      <div class="eyebrow">
+        <span class="status-dot"></span>
+        <span data-i18n="availability">OPEN TO INTERNATIONAL OPPORTUNITIES</span>
+      </div>
+
+      <p class="hero-kicker" data-i18n="heroKicker">
+        DEVOPS ENGINEER · LINUX SYSTEMS ADMINISTRATOR
+      </p>
+
+      <h1>
+        <span data-i18n="heroLine1">Building reliable</span><br>
+        <span class="gradient-text" data-i18n="heroLine2">cloud & infrastructure</span><br>
+        <span data-i18n="heroLine3">environments.</span>
+      </h1>
+
+      <p class="hero-description" data-i18n="heroDescription">
+        I design, automate and operate Linux-based infrastructure, CI/CD workflows and monitoring solutions, with a strong focus on reliability, security and operational efficiency.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="button button-primary" data-i18n="heroContact">Get in touch ↗</a>
+        <a href="assets/CV.pdf" target="_blank" rel="noopener" class="button button-secondary" data-i18n="heroCV">View my CV ↗</a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/wejden-khessib-b79b151b4/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/wejdenekh" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:wejdenkhessib@gmail.com">Email ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-top">
+          <div class="terminal-dots"><i></i><i></i><i></i></div>
+          <span>infra-status.sh</span>
+          <span class="live">LIVE</span>
+        </div>
+
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> systemctl status infrastructure</p>
+          <p class="success">● infrastructure.service - Operational</p>
+          <p><span class="terminal-label">Environment</span> Production</p>
+          <p><span class="terminal-label">Monitoring</span><span class="success">Active</span></p>
+          <p><span class="terminal-label">Deployment</span> Automated</p>
+          <p><span class="terminal-label">Availability</span><span class="success">99.9%</span></p>
+          <div class="terminal-bars">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <p><span class="prompt">$</span> <span class="success">_</span></p>
+        </div>
+      </div>
+      <div class="floating-tag docker">Docker</div>
+      <div class="floating-tag linux">Linux</div>
+      <div class="floating-tag grafana">Grafana</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-heading">
+      <p class="section-index">01 / <span data-i18n="aboutLabel">PROFILE</span></p>
+      <h2 data-i18n="aboutTitle">About me</h2>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <p class="lead" data-i18n="aboutLead">
+          I am a DevOps Engineer and Linux Systems Administrator with 3 years of hands-on experience supporting and improving IT infrastructure.
+        </p>
+        <p class="body-copy" data-i18n="aboutText">
+          My work covers Linux server administration, virtualization, containerization, CI/CD automation, monitoring and infrastructure security. I enjoy turning operational needs into reliable, repeatable solutions and collaborating with development and operations teams to keep services stable.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><strong>3<span>+</span></strong><small data-i18n="stat1">Years of experience</small></div>
+        <div class="stat-card"><strong>100<span>+</span></strong><small data-i18n="stat2">Linux servers managed</small></div>
+        <div class="stat-card"><strong>99.9<span>%</span></strong><small data-i18n="stat3">Service availability</small></div>
+        <div class="stat-card"><strong>50<span>+</span></strong><small data-i18n="stat4">CI/CD pipelines supported</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-heading">
+      <p class="section-index">02 / <span data-i18n="skillsLabel">TOOLBOX</span></p>
+      <h2 data-i18n="skillsTitle">Technical skills</h2>
+      <p class="section-intro" data-i18n="skillsIntro">Tools and technologies I use to build, automate and operate infrastructure.</p>
+    </div>
+
+    <div class="skills-grid">
+      <article class="skill-card">
+        <div class="skill-icon">⌘</div>
+        <h3 data-i18n="skill1">Systems & Virtualization</h3>
+        <p>Linux · Ubuntu · Debian · RHEL · Proxmox VE · VMware · OVH · Plesk</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">⟳</div>
+        <h3 data-i18n="skill2">DevOps & CI/CD</h3>
+        <p>GitLab CI/CD · Jenkins · Git · SonarQube · Trivy · Vault</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">▣</div>
+        <h3 data-i18n="skill3">Containers & Orchestration</h3>
+        <p>Docker · Docker Compose · Kubernetes fundamentals</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">⌁</div>
+        <h3 data-i18n="skill4">Infrastructure as Code</h3>
+        <p>Terraform · Ansible · Bash · Python</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">◉</div>
+        <h3 data-i18n="skill5">Monitoring & Observability</h3>
+        <p>Prometheus · Grafana · Alertmanager · cAdvisor · Node Exporter · InfluxDB</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">⛨</div>
+        <h3 data-i18n="skill6">Security & Web</h3>
+        <p>Nginx · Apache · SSL/TLS · Certbot · Cloudflare · Firewalls</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">▤</div>
+        <h3 data-i18n="skill7">Databases</h3>
+        <p>MariaDB · MySQL · PostgreSQL · MongoDB</p>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">↻</div>
+        <h3 data-i18n="skill8">Backup & Recovery</h3>
+        <p>Proxmox · VMware · Acronis · Backup and restore procedures</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-heading">
+      <p class="section-index">03 / <span data-i18n="experienceLabel">CAREER</span></p>
+      <h2 data-i18n="experienceTitle">Professional experience</h2>
+    </div>
+
+    <article class="experience-card">
+      <div class="experience-top">
+        <div>
+          <h3 data-i18n="roleTitle">DevOps Engineer & Linux Systems Administrator</h3>
+          <p class="experience-company" data-i18n="roleCompany">IT Infrastructure & Operations</p>
+        </div>
+        <span class="experience-period" data-i18n="rolePeriod">3 years of experience</span>
+      </div>
+
+      <p class="body-copy" data-i18n="roleIntro">
+        Administration and continuous improvement of development, staging and production environments.
+      </p>
+
+      <ul class="check-list">
+        <li data-i18n="exp1">Administered and maintained more than 100 Linux servers across multiple environments.</li>
+        <li data-i18n="exp2">Built and maintained CI/CD pipelines with GitLab CI and Jenkins to streamline application delivery.</li>
+        <li data-i18n="exp3">Containerized applications and microservices with Docker and Docker Compose.</li>
+        <li data-i18n="exp4">Implemented monitoring and alerting with Prometheus, Grafana and related exporters.</li>
+        <li data-i18n="exp5">Configured and renewed SSL/TLS certificates on Nginx, Apache, Plesk and IIS environments.</li>
+        <li data-i18n="exp6">Handled infrastructure troubleshooting, backup and restore operations, and production incidents.</li>
+        <li data-i18n="exp7">Worked with virtualization platforms including Proxmox VE and VMware.</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-heading">
+      <p class="section-index">04 / <span data-i18n="projectsLabel">SELECTED WORK</span></p>
+      <h2 data-i18n="projectsTitle">Featured projects</h2>
+      <p class="section-intro" data-i18n="projectsIntro">
+        Examples of infrastructure and automation work across monitoring, delivery and operations.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="project-top"><span class="project-number">01</span><span class="project-type" data-i18n="type1">OBSERVABILITY</span></div>
+        <h3 data-i18n="project1Title">Infrastructure monitoring platform</h3>
+        <p data-i18n="project1Text">Designed monitoring dashboards to track server and application metrics, using Prometheus, Grafana, exporters and alerting components.</p>
+        <div class="tag-list"><span>Prometheus</span><span>Grafana</span><span>Alertmanager</span><span>Docker</span></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top"><span class="project-number">02</span><span class="project-type" data-i18n="type2">AUTOMATION</span></div>
+        <h3 data-i18n="project2Title">CI/CD pipeline automation</h3>
+        <p data-i18n="project2Text">Implemented and maintained automated build, test and deployment workflows to improve delivery consistency and reduce repetitive operations.</p>
+        <div class="tag-list"><span>GitLab CI</span><span>Jenkins</span><span>Docker</span><span>SonarQube</span></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top"><span class="project-number">03</span><span class="project-type" data-i18n="type3">INFRASTRUCTURE</span></div>
+        <h3 data-i18n="project3Title">Linux & virtualization operations</h3>
+        <p data-i18n="project3Text">Managed virtualized Linux environments, server provisioning, network configuration, service troubleshooting and backup/restore workflows.</p>
+        <div class="tag-list"><span>Linux</span><span>Proxmox</span><span>VMware</span><span>Ansible</span></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-top"><span class="project-number">04</span><span class="project-type" data-i18n="type4">SECURITY</span></div>
+        <h3 data-i18n="project4Title">Web server security & TLS</h3>
+        <p data-i18n="project4Text">Configured reverse proxy and web server environments, managed SSL/TLS certificates and applied operational security practices.</p>
+        <div class="tag-list"><span>Nginx</span><span>Apache</span><span>Certbot</span><span>Cloudflare</span></div>
+      </article>
+    </div>
+
+    <p class="projects-note" data-i18n="projectsNote">
+      These project summaries represent areas of my professional work. Public repositories and technical write-ups can be added as they become available.
+    </p>
+  </section>
+
+  <!-- LEARNING -->
+  <section class="section" id="learning">
+    <div class="section-heading">
+      <p class="section-index">05 / <span data-i18n="learningLabel">CONTINUOUS LEARNING</span></p>
+      <h2 data-i18n="learningTitle">Certifications & learning</h2>
+    </div>
+
+    <div class="learning-card">
+      <div class="learning-symbol">↗</div>
+      <div>
+        <h3 data-i18n="learningHeading">Always learning, always improving</h3>
+        <p data-i18n="learningText">
+          Continuously developing skills in cloud technologies, infrastructure automation, container platforms and DevOps practices. Verified certifications can be added here with their exact titles and credential links.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="contact-panel">
+      <p class="section-index">06 / <span data-i18n="contactLabel">LET'S CONNECT</span></p>
+      <h2 data-i18n="contactTitle">Let's build reliable systems together.</h2>
+      <p data-i18n="contactText">
+        Interested in discussing a DevOps opportunity, an infrastructure challenge or a collaboration? Feel free to reach out.
+      </p>
+
+      <div class="contact-actions">
+        <a class="button button-primary" href="mailto:wejdenkhessib@gmail.com" data-i18n="contactEmail">Get in touch ↗</a>
+        <a class="button button-secondary" href="https://www.linkedin.com/in/wejden-khessib-b79b151b4/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="button button-secondary" href="https://github.com/wejdenekh" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+
+      <p class="contact-email">wejdenkhessib@gmail.com</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a class="brand" href="#home">
+    <span class="brand-mark">WK</span>
+    <span>WEJDEN<span class="brand-muted">.KHESSIB</span></span>
+  </a>
+  <p data-i18n="footerText">Designed & built by Wejden Khessib · 2026</p>
+  <a class="back-top" href="#home" data-i18n="backTop">Back to top ↑</a>
+</footer>
+
+<script>
+const translations = {
+  en: {
+    navAbout:"About",navSkills:"Skills",navExperience:"Experience",navProjects:"Projects",navContact:"Contact",
+    availability:"OPEN TO INTERNATIONAL OPPORTUNITIES",
+    heroKicker:"DEVOPS ENGINEER · LINUX SYSTEMS ADMINISTRATOR",
+    heroLine1:"Building reliable",heroLine2:"cloud & infrastructure",heroLine3:"environments.",
+    heroDescription:"I design, automate and operate Linux-based infrastructure, CI/CD workflows and monitoring solutions, with a strong focus on reliability, security and operational efficiency.",
+    heroContact:"Get in touch ↗",heroCV:"View my CV ↗",
+    aboutLabel:"PROFILE",aboutTitle:"About me",
+    aboutLead:"I am a DevOps Engineer and Linux Systems Administrator with 3 years of hands-on experience supporting and improving IT infrastructure.",
+    aboutText:"My work covers Linux server administration, virtualization, containerization, CI/CD automation, monitoring and infrastructure security. I enjoy turning operational needs into reliable, repeatable solutions and collaborating with development and operations teams to keep services stable.",
+    stat1:"Years of experience",stat2:"Linux servers managed",stat3:"Service availability",stat4:"CI/CD pipelines supported",
+    skillsLabel:"TOOLBOX",skillsTitle:"Technical skills",
+    skillsIntro:"Tools and technologies I use to build, automate and operate infrastructure.",
+    skill1:"Systems & Virtualization",skill2:"DevOps & CI/CD",skill3:"Containers & Orchestration",
+    skill4:"Infrastructure as Code",skill5:"Monitoring & Observability",
+    skill6:"Security & Web",skill7:"Databases",skill8:"Backup & Recovery",
+    experienceLabel:"CAREER",experienceTitle:"Professional experience",
+    roleTitle:"DevOps Engineer & Linux Systems Administrator",
+    roleCompany:"IT Infrastructure & Operations",rolePeriod:"3 years of experience",
+    roleIntro:"Administration and continuous improvement of development, staging and production environments.",
+    exp1:"Administered and maintained more than 100 Linux servers across multiple environments.",
+    exp2:"Built and maintained CI/CD pipelines with GitLab CI and Jenkins to streamline application delivery.",
+    exp3:"Containerized applications and microservices with Docker and Docker Compose.",
+    exp4:"Implemented monitoring and alerting with Prometheus, Grafana and related exporters.",
+    exp5:"Configured and renewed SSL/TLS certificates on Nginx, Apache, Plesk and IIS environments.",
+    exp6:"Handled infrastructure troubleshooting, backup and restore operations, and production incidents.",
+    exp7:"Worked with virtualization platforms including Proxmox VE and VMware.",
+    projectsLabel:"SELECTED WORK",projectsTitle:"Featured projects",
+    projectsIntro:"Examples of infrastructure and automation work across monitoring, delivery and operations.",
+    type1:"OBSERVABILITY",type2:"AUTOMATION",type3:"INFRASTRUCTURE",type4:"SECURITY",
+    project1Title:"Infrastructure monitoring platform",
+    project1Text:"Designed monitoring dashboards to track server and application metrics, using Prometheus, Grafana, exporters and alerting components.",
+    project2Title:"CI/CD pipeline automation",
+    project2Text:"Implemented and maintained automated build, test and deployment workflows to improve delivery consistency and reduce repetitive operations.",
+    project3Title:"Linux & virtualization operations",
+    project3Text:"Managed virtualized Linux environments, server provisioning, network configuration, service troubleshooting and backup/restore workflows.",
+    project4Title:"Web server security & TLS",
+    project4Text:"Configured reverse proxy and web server environments, managed SSL/TLS certificates and applied operational security practices.",
+    projectsNote:"These project summaries represent areas of my professional work. Public repositories and technical write-ups can be added as they become available.",
+    learningLabel:"CONTINUOUS LEARNING",learningTitle:"Certifications & learning",
+    learningHeading:"Always learning, always improving",
+    learningText:"Continuously developing skills in cloud technologies, infrastructure automation, container platforms and DevOps practices. Verified certifications can be added here with their exact titles and credential links.",
+    contactLabel:"LET'S CONNECT",contactTitle:"Let's build reliable systems together.",
+    contactText:"Interested in discussing a DevOps opportunity, an infrastructure challenge or a collaboration? Feel free to reach out.",
+    contactEmail:"Get in touch ↗",
+    footerText:"Designed & built by Wejden Khessib · 2026",backTop:"Back to top ↑"
+  },
+
+  fr: {
+    navAbout:"À propos",navSkills:"Compétences",navExperience:"Expérience",navProjects:"Projets",navContact:"Contact",
+    availability:"OUVERTE AUX OPPORTUNITÉS À L'INTERNATIONAL",
+    heroKicker:"INGÉNIEURE DEVOPS · ADMINISTRATRICE SYSTÈMES LINUX",
+    heroLine1:"Concevoir des",heroLine2:"infrastructures cloud",heroLine3:"fiables et évolutives.",
+    heroDescription:"Je conçois, automatise et exploite des infrastructures Linux, des workflows CI/CD et des solutions de supervision, avec une attention particulière portée à la fiabilité, à la sécurité et à l'efficacité opérationnelle.",
+    heroContact:"Me contacter ↗",heroCV:"Consulter mon CV ↗",
+    aboutLabel:"PROFIL",aboutTitle:"À propos",
+    aboutLead:"Je suis ingénieure DevOps et administratrice systèmes Linux avec 3 ans d'expérience pratique dans l'exploitation et l'amélioration d'infrastructures informatiques.",
+    aboutText:"Mon activité couvre l'administration de serveurs Linux, la virtualisation, la conteneurisation, l'automatisation CI/CD, la supervision et la sécurisation des infrastructures. J'aime transformer les besoins opérationnels en solutions fiables et reproductibles, en collaboration avec les équipes de développement et d'exploitation.",
+    stat1:"Années d'expérience",stat2:"Serveurs Linux administrés",stat3:"Disponibilité des services",stat4:"Pipelines CI/CD accompagnés",
+    skillsLabel:"BOÎTE À OUTILS",skillsTitle:"Compétences techniques",
+    skillsIntro:"Les outils et technologies que j'utilise pour construire, automatiser et exploiter des infrastructures.",
+    skill1:"Systèmes & virtualisation",skill2:"DevOps & CI/CD",skill3:"Conteneurs & orchestration",
+    skill4:"Infrastructure as Code",skill5:"Supervision & observabilité",
+    skill6:"Sécurité & web",skill7:"Bases de données",skill8:"Sauvegarde & restauration",
+    experienceLabel:"PARCOURS",experienceTitle:"Expérience professionnelle",
+    roleTitle:"Ingénieure DevOps & Administratrice systèmes Linux",
+    roleCompany:"Infrastructure informatique & exploitation",rolePeriod:"3 ans d'expérience",
+    roleIntro:"Administration et amélioration continue d'environnements de développement, de préproduction et de production.",
+    exp1:"Administration et maintenance de plus de 100 serveurs Linux répartis sur plusieurs environnements.",
+    exp2:"Conception et maintenance de pipelines CI/CD avec GitLab CI et Jenkins afin de fluidifier les livraisons applicatives.",
+    exp3:"Conteneurisation d'applications et de microservices avec Docker et Docker Compose.",
+    exp4:"Mise en place de la supervision et des alertes avec Prometheus, Grafana et leurs exporters.",
+    exp5:"Configuration et renouvellement de certificats SSL/TLS sur des environnements Nginx, Apache, Plesk et IIS.",
+    exp6:"Diagnostic et résolution d'incidents, opérations de sauvegarde et de restauration, et support des environnements de production.",
+    exp7:"Exploitation de plateformes de virtualisation, notamment Proxmox VE et VMware.",
+    projectsLabel:"RÉALISATIONS",projectsTitle:"Projets représentatifs",
+    projectsIntro:"Exemples de travaux liés à l'infrastructure, à l'automatisation, à la supervision et à l'exploitation.",
+    type1:"OBSERVABILITÉ",type2:"AUTOMATISATION",type3:"INFRASTRUCTURE",type4:"SÉCURITÉ",
+    project1Title:"Plateforme de supervision d'infrastructure",
+    project1Text:"Conception de tableaux de bord pour suivre les métriques des serveurs et des applications avec Prometheus, Grafana, des exporters et des composants d'alerting.",
+    project2Title:"Automatisation des pipelines CI/CD",
+    project2Text:"Mise en place et maintenance de workflows automatisés de build, de test et de déploiement afin d'améliorer la régularité des livraisons et de réduire les opérations répétitives.",
+    project3Title:"Exploitation Linux & virtualisation",
+    project3Text:"Gestion d'environnements Linux virtualisés, provisionnement de serveurs, configuration réseau, diagnostic des services et procédures de sauvegarde/restauration.",
+    project4Title:"Sécurisation des serveurs web & TLS",
+    project4Text:"Configuration de reverse proxy et de serveurs web, gestion des certificats SSL/TLS et application de bonnes pratiques de sécurité opérationnelle.",
+    projectsNote:"Ces descriptions synthétisent des activités représentatives de mon expérience professionnelle. Des dépôts publics et des documentations techniques pourront être ajoutés lorsqu'ils seront disponibles.",
+    learningLabel:"FORMATION CONTINUE",learningTitle:"Certifications & apprentissage",
+    learningHeading:"Apprendre et progresser en continu",
+    learningText:"Développement continu de mes compétences en technologies cloud, automatisation d'infrastructure, plateformes de conteneurs et pratiques DevOps. Les certifications vérifiées pourront être ajoutées ici avec leur intitulé exact et leur lien de validation.",
+    contactLabel:"ÉCHANGEONS",contactTitle:"Construisons ensemble des systèmes fiables.",
+    contactText:"Vous souhaitez échanger sur une opportunité DevOps, un défi d'infrastructure ou une collaboration ? N'hésitez pas à me contacter.",
+    contactEmail:"Me contacter ↗",
+    footerText:"Conçu et développé par Wejden Khessib · 2026",backTop:"Retour en haut ↑"
+  }
+};
+
+function setLanguage(language) {
+  const dictionary = translations[language] || translations.en;
+
+  document.documentElement.lang = language;
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    if (dictionary[key]) {
+      element.textContent = dictionary[key];
+    }
+  });
+
+  document.querySelectorAll(".lang-btn").forEach(button => {
+    const active = button.dataset.lang === language;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  document.title = language === "fr"
+    ? "Wejden Khessib | Ingénieure DevOps"
+    : "Wejden Khessib | DevOps Engineer";
+}
+
+document.querySelectorAll(".lang-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    setLanguage(button.dataset.lang);
+  });
+});
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", () => {
+  mainNav.classList.toggle("open");
+});
+
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("open");
+  });
+});
+
+// English is the default language.
+setLanguage("en");
+</script>
+
+</body>
+</html>
